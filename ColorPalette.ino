@@ -1,10 +1,7 @@
 #include <FastLED.h>
 
-#define LED_PIN     9
 #define NUM_LEDS    32
 #define BRIGHTNESS  64
-#define LED_TYPE    NEOPIXEL
-#define COLOR_ORDER RGB
 CRGB leds[NUM_LEDS];
 
 #define UPDATES_PER_SECOND 100
@@ -37,7 +34,8 @@ extern const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM;
 
 void setup() {
   delay( 3000 ); // power-up safety delay
-  FastLED.addLeds<WS2801, 3, 2, RGB>(leds, NUM_LEDS);
+  FastLED.addLeds<NEOPIXEL, 9>(leds, 32);
+  FastLED.addLeds<WS2801, 3, 2, RGB>(leds,20);
   FastLED.setBrightness(  BRIGHTNESS );
   
   currentPalette = RainbowColors_p;
