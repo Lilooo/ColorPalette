@@ -1,4 +1,5 @@
 #include <FastLED.h>
+#include <avr/power.h>
 
 #define NUM_LEDS    32
 #define BRIGHTNESS  64
@@ -34,6 +35,8 @@ extern const TProgmemPalette16 myRedWhiteBluePalette_p PROGMEM;
 
 void setup() {
   delay( 3000 ); // power-up safety delay
+  // To make it work w/ an 8 Mhz proc (example : Lilypad Arduino)
+  clock_prescale_set(clock_div_2);
   FastLED.addLeds<NEOPIXEL, 9>(leds, 32);
   FastLED.addLeds<WS2801, 3, 2, RGB>(leds,20);
   FastLED.setBrightness(  BRIGHTNESS );
